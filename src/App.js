@@ -18,7 +18,6 @@ const items = [
 export default () => {
   return (
     <div className="App">
-      <br />
       <Accordion items={items} />
     </div>
   );
