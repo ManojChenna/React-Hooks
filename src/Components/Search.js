@@ -19,10 +19,20 @@ const Search = () => {
       });
       setResults(data.query.search);
     };
-    if (searchTerm) {
-      searchApi();
-    }
+
+    searchApi();
   }, [searchTerm]);
+
+  const renderedResults = searchResults.map((result) => {
+    return (
+      <div className="item" key={result.pageid}>
+        <div className="content">
+          <div className="header">{result.title}</div>
+          <span dangerouslySetInnerHTML={{__html: result.snippet}}></span>
+        </div>
+      </div>
+    );
+  });
   return (
     <div>
       <div className="ui form">
@@ -35,6 +45,7 @@ const Search = () => {
           />
         </div>
       </div>
+      <div className="ui celled list">{renderedResults}</div>
     </div>
   );
 };
