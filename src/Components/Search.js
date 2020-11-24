@@ -4,7 +4,6 @@ import axios from "axios";
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("Tarantino");
   const [searchResults, setResults] = useState([]);
-  console.log(searchResults);
 
   useEffect(() => {
     const searchApi = async () => {
@@ -19,16 +18,35 @@ const Search = () => {
       });
       setResults(data.query.search);
     };
+    if (searchTerm && !searchResults.length) {
+      searchApi();
+    } else {
+      const waitTimeId = setTimeout(() => {
+        if (searchTerm) {
+          searchApi();
+        }
+      }, 500);
 
-    searchApi();
+      return () => {
+        clearTimeout(waitTimeId);
+      };
+    }
   }, [searchTerm]);
 
   const renderedResults = searchResults.map((result) => {
     return (
       <div className="item" key={result.pageid}>
+        <div className="right floated content">
+          <a
+            className="ui button"
+            href={`https://en.wikipedia.org?curid=${result.pageid}`}
+          >
+            Go Ahead
+          </a>
+        </div>
         <div className="content">
           <div className="header">{result.title}</div>
-          <span dangerouslySetInnerHTML={{__html: result.snippet}}></span>
+          <span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
         </div>
       </div>
     );
