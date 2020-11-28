@@ -4,6 +4,7 @@ import Search from "./Components/Search";
 import Dropdown from "./Components/Dropdown";
 import Translate from "./Components/Translate";
 import Route from "./Components/Route";
+import Header from "./Components/Header";
 
 const items = [
   {
@@ -38,6 +39,7 @@ export default () => {
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   return (
     <div className="App">
+      <Header />
       <Route path="/">
         <Accordion items={items} />
       </Route>
