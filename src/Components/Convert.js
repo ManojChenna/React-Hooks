@@ -19,6 +19,9 @@ const Convert = ({ language, text }) => {
       // );
       // setTranslated({data.data.translations[0].translatedText})
     };
+    if (debounceText) {
+      doTranslation();
+    }
   }, [language, debounceText]);
 
   useEffect(() => {
