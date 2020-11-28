@@ -3,6 +3,7 @@ import Accordion from "./Components/Accordion";
 import Search from "./Components/Search";
 import Dropdown from "./Components/Dropdown";
 import Translate from "./Components/Translate";
+import Route from "./Components/Route";
 
 const items = [
   {
@@ -33,44 +34,26 @@ const dropdownOptions = [
   }
 ];
 
-const showAccordion = () => {
-  if (window.location.pathname === "/") {
-    return <Accordion items={items} />;
-  }
-};
-
-const showSearchList = () => {
-  if (window.location.pathname === "/list") {
-    return <Search />;
-  }
-};
-
-const showDropdownToggle = () => {
-  //const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
-  if (window.location.pathname === "/dropdown") {
-    return (
-      <Dropdown
-        selectedOption={selectedOption}
-        setSelectedOption={setSelectedOption}
-        values={dropdownOptions}
-      />
-    );
-  }
-};
-
-const showTranslate = () => {
-  if (window.location.pathname === "/translate") {
-    return <Translate />;
-  }
-};
-
 export default () => {
+  const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   return (
     <div className="App">
-      {showAccordion()}
-      {showSearchList()}
-      {showDropdownToggle()}
-      {showTranslate()}
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path="/list">
+        <Search />
+      </Route>
+      <Route path="/dropdown">
+        <Dropdown
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          values={dropdownOptions}
+        />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 };
