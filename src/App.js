@@ -32,11 +32,45 @@ const dropdownOptions = [
     value: "value 3"
   }
 ];
+
+const showAccordion = () => {
+  if (window.location.pathname === "/") {
+    return <Accordion items={items} />;
+  }
+};
+
+const showSearchList = () => {
+  if (window.location.pathname === "/list") {
+    return <Search />;
+  }
+};
+
+const showDropdownToggle = () => {
+  //const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
+  if (window.location.pathname === "/dropdown") {
+    return (
+      <Dropdown
+        selectedOption={selectedOption}
+        setSelectedOption={setSelectedOption}
+        values={dropdownOptions}
+      />
+    );
+  }
+};
+
+const showTranslate = () => {
+  if (window.location.pathname === "/translate") {
+    return <Translate />;
+  }
+};
+
 export default () => {
-  const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
-  const [showDropdown, setShowDropdown] = useState(true);
   return (
     <div className="App">
+      {showAccordion()}
+      {showSearchList()}
+      {showDropdownToggle()}
+      {showTranslate()}
       {/*       <Accordion items={items} />
        
       <Search />
@@ -51,8 +85,9 @@ export default () => {
           values={dropdownOptions}
         />
       ) : null}
-      */}
+      
       <Translate />
+      */}
     </div>
   );
 };
