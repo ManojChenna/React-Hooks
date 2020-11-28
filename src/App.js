@@ -71,23 +71,6 @@ export default () => {
       {showSearchList()}
       {showDropdownToggle()}
       {showTranslate()}
-      {/*       <Accordion items={items} />
-       
-      <Search />
-      
-      <button onClick={() => setShowDropdown(!showDropdown)}>
-        Toggle Dropdown
-      </button>
-      {showDropdown ? (
-        <Dropdown
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-          values={dropdownOptions}
-        />
-      ) : null}
-      
-      <Translate />
-      */}
     </div>
   );
 };
